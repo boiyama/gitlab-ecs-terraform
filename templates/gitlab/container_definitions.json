@@ -1,0 +1,50 @@
+[
+  {
+    "name": "${name}",
+    "image": "gitlab/gitlab-ce:10.2.4-ce.0",
+    "memoryReservation": 2048,
+    "environment": [
+      {
+        "name": "GITLAB_OMNIBUS_CONFIG",
+        "value": "${gitlab_config}"
+      },
+      {
+        "name": "GITLAB_ROOT_PASSWORD",
+        "value": "${root_password}"
+      },
+      {
+        "name": "GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN",
+        "value": "${runner_token}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "sourceVolume": "gitlab-etc",
+        "containerPath": "/etc/gitlab"
+      },
+      {
+        "sourceVolume": "gitlab-log",
+        "containerPath": "/var/log/gitlab"
+      },
+      {
+        "sourceVolume": "gitlab-opt",
+        "containerPath": "/var/opt/gitlab"
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 80
+      },
+      {
+        "containerPort": 22
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${awslogs_group}",
+        "awslogs-region": "us-east-1"
+      }
+    }
+  }
+]

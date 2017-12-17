@@ -1,0 +1,17 @@
+Resources:
+  Cert:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: "${domain}"
+      SubjectAlternativeNames: ${sans}
+      DomainValidationOptions:
+        -
+          DomainName: "${domain}"
+          ValidationDomain: "${domain}"
+      Tags:
+        -
+          Key: Name
+          Value: "${project}-cert"
+Outputs:
+  Arn:
+    Value: !Ref Cert

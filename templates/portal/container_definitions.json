@@ -1,0 +1,20 @@
+[
+  {
+    "name": "${name}",
+    "image": "nginx",
+    "memory": 128,
+    "mountPoints": [],
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${awslogs_group}",
+        "awslogs-region": "us-east-1"
+      }
+    }
+  }
+]

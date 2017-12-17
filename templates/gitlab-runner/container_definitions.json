@@ -1,0 +1,20 @@
+[
+  {
+    "name": "${name}",
+    "image": "gitlab/gitlab-runner",
+    "memory": 128,
+    "mountPoints": [
+      {
+        "sourceVolume": "main",
+        "containerPath": "/etc/gitlab-runner"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${awslogs_group}",
+        "awslogs-region": "us-east-1"
+      }
+    }
+  }
+]

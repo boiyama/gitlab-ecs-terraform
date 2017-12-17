@@ -1,0 +1,24 @@
+[
+  {
+    "name": "${name}",
+    "image": "mattermost/webrtc",
+    "memory": 128,
+    "portMappings": [
+      {
+        "hostPort": 7088,
+        "containerPort": 7088
+      },
+      {
+        "hostPort": 8188,
+        "containerPort": 8188
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${awslogs_group}",
+        "awslogs-region": "us-east-1"
+      }
+    }
+  }
+]
