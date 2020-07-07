@@ -1,7 +1,6 @@
 # Create ECS cluster
 resource "aws_ecs_cluster" "main" {
   name               = "${var.project}-ecs"
-  capacity_providers = ["FARGATE_SPOT"]
 }
 
 # Get GitLab config
@@ -63,7 +62,6 @@ resource "aws_ecs_task_definition" "main" {
   family                   = "${var.project}-ecs-td-${var.container_names[count.index]}"
   container_definitions    = element(data.template_file.container_definitions.*.rendered, count.index)
   task_role_arn            = aws_iam_role.ecs_service.arn
-  requires_compatibilities = ["FARGATE"]
 
   volume {
     name      = "main"
