@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_log_group" "container" {
-  count = "${length(var.container_names)}"
+  count = length(var.container_names)
   name  = "${var.project}/${var.container_names[count.index]}"
 }
 

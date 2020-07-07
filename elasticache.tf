@@ -1,6 +1,6 @@
 resource "aws_elasticache_subnet_group" "private" {
   name       = "${var.project}-subnet-group"
-  subnet_ids = ["${aws_subnet.private.*.id}"]
+  subnet_ids = [join("\",\"", aws_subnet.private.*.id)]
 }
 
 # Create GitLab elasticache cluster
@@ -11,6 +11,6 @@ resource "aws_elasticache_cluster" "gitlab" {
   num_cache_nodes      = 1
   parameter_group_name = "default.redis3.2"
   port                 = 6379
-  subnet_group_name    = "${aws_elasticache_subnet_group.private.name}"
+  subnet_group_name    = aws_elasticache_subnet_group.private.name
   security_group_ids   = ["${aws_security_group.elasticache.id}"]
 }

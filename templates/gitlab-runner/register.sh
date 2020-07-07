@@ -7,7 +7,7 @@ register
 --registration-token ${runner_token}
 --executor "docker+machine"
 --limit 20
---docker-image "docker:17.03"
+--docker-image "docker:19.03"
 --docker-volumes "/var/run/docker.sock:/var/run/docker.sock"
 --machine-idle-nodes 0
 --machine-idle-time 60
@@ -20,7 +20,7 @@ register
 --machine-machine-options "amazonec2-subnet-id=${subnet_id}"
 --machine-machine-options "amazonec2-security-group=${security_group}"
 --machine-machine-options "amazonec2-private-address-only"
---machine-machine-options "amazonec2-instance-type=c4.large"
+--machine-machine-options "amazonec2-instance-type=t3a.medium"
 --machine-machine-options "amazonec2-request-spot-instance"
 --machine-machine-options "amazonec2-spot-price=0.1"
 --cache-type "s3"
