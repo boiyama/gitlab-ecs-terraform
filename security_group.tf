@@ -1,6 +1,6 @@
 # Create security groups
 resource "aws_security_group" "alb" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-alb"
 
   ingress {
@@ -24,13 +24,13 @@ resource "aws_security_group" "alb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-alb"
   }
 }
 
 resource "aws_security_group" "instance" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-instance"
 
   ingress {
@@ -47,13 +47,13 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-instance"
   }
 }
 
 resource "aws_security_group" "efs" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-efs"
 
   ingress {
@@ -63,13 +63,13 @@ resource "aws_security_group" "efs" {
     cidr_blocks = ["${var.cidr_block}"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-efs"
   }
 }
 
 resource "aws_security_group" "rds" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-rds"
 
   ingress {
@@ -79,13 +79,13 @@ resource "aws_security_group" "rds" {
     cidr_blocks = ["${var.cidr_block}"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-rds"
   }
 }
 
 resource "aws_security_group" "elasticache" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-elasticache"
 
   ingress {
@@ -95,13 +95,13 @@ resource "aws_security_group" "elasticache" {
     cidr_blocks = ["${var.cidr_block}"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-elasticache"
   }
 }
 
 resource "aws_security_group" "gitlab_runner" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-gitlab-runner"
 
   ingress {
@@ -125,13 +125,13 @@ resource "aws_security_group" "gitlab_runner" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-gitlab-runner"
   }
 }
 
 resource "aws_security_group" "bastion" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   name   = "${var.project}-sg-bastion"
 
   ingress {
@@ -148,7 +148,7 @@ resource "aws_security_group" "bastion" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "${var.project}-sg-bastion"
   }
 }

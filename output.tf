@@ -14,7 +14,7 @@ output "gitlab_root_password" {
 data "template_file" "gitlab_runner_register" {
   template = "${file("${path.module}/templates/gitlab-runner/register.sh")}"
 
-  vars {
+  vars = {
     project        = "${var.project}"
     gitlab_host    = "${var.hosts[1]}${var.domain_name}"
     runner_token   = "${random_string.gitlab_runner_token.result}"

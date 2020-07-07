@@ -1,7 +1,7 @@
 # Create db subnet group
 resource "aws_db_subnet_group" "private" {
   name       = "${var.project}-subnet-group"
-  subnet_ids = ["${aws_subnet.private.*.id}"]
+  subnet_ids = [join("\",\"", aws_subnet.private.*.id)]
 }
 
 # Create random id for GitLab db password
@@ -17,9 +17,9 @@ resource "aws_db_instance" "gitlab" {
   allocated_storage      = 20
   multi_az               = true
   username               = "gitlab"
-  password               = "${random_string.gitlab_db_password.result}"
+  password               = random_string.gitlab_db_password.result
   name                   = "gitlabhq_production"
-  db_subnet_group_name   = "${aws_db_subnet_group.private.id}"
+  db_subnet_group_name   = aws_db_subnet_group.private.id
   vpc_security_group_ids = ["${aws_security_group.rds.id}"]
   skip_final_snapshot    = true
 }
@@ -37,9 +37,9 @@ resource "aws_db_instance" "mattermost" {
   allocated_storage      = 20
   multi_az               = true
   username               = "gitlab_mattermost"
-  password               = "${random_string.mattermost_db_password.result}"
+  password               = random_string.mattermost_db_password.result
   name                   = "mattermost_production"
-  db_subnet_group_name   = "${aws_db_subnet_group.private.id}"
+  db_subnet_group_name   = aws_db_subnet_group.private.id
   vpc_security_group_ids = ["${aws_security_group.rds.id}"]
   skip_final_snapshot    = true
 }

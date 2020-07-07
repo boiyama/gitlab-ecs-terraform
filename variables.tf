@@ -7,7 +7,7 @@ variable "cidr_block" {
 }
 
 variable "instance_type" {
-  default = "c4.large"
+  default = "t3a.medium"
 }
 
 variable "spot_price" {
